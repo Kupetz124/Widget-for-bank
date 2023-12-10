@@ -5,8 +5,8 @@ from typing import Any
 
 import pandas as pd
 
-pd.set_option("display.max_rows", None)
-pd.set_option("display.max_columns", None)
+# pd.set_option("display.max_rows", None)
+# pd.set_option("display.max_columns", None)
 
 
 def greet_user() -> str:
@@ -26,10 +26,19 @@ def greet_user() -> str:
         return "Добрый вечер!"
 
 
-def read_json() -> Any:
+def read_json(path: str) -> Any:
     """
     Считывает настройки пользователя из json файла и возвращает словарь с ними.
     :return: Словарь с настройками пользователя.
     """
-    with open(os.path.join("..", "data", "user_settings.json")) as file:
+    with open(os.path.join(path)) as file:
         return json.load(file)
+
+
+def get_data_from_excel(path: str) -> pd.DataFrame:
+    """
+    Считывает данные из excel файла и возвращает DataFrame с транзакциями.
+    :param path: Путь к файлу excel
+    :return: pd.DataFrame
+    """
+    return pd.read_excel(path)

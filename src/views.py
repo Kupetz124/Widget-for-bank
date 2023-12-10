@@ -19,7 +19,7 @@ def convert_currencies(x: pd.DataFrame) -> Any:
     return res
 
 
-def prepare_data(df: pd.DataFrame) -> Any:
+def prepare_data(df: pd.DataFrame) -> pd.DataFrame:
     """
     Преобразовывает и сортирует данные из файла в удобный вид.
     :param df: DataFrame с транзакциями.
@@ -55,15 +55,13 @@ def prepare_data(df: pd.DataFrame) -> Any:
     return df
 
 
-def get_monthly_data(path: str, date: str) -> pd.DataFrame:
+def get_monthly_data(df: pd.DataFrame, date: str) -> pd.DataFrame:
     """
     Возвращает транзакции за календарный месяц, совпадающий с указанной датой.
-    :param path: Путь к файлу excel с транзакциями.
+    :param df: DataFrame с транзакциями.
     :param date: Строка с датой в формате 'YYYY-MM-DD HH:MM:SS'.
     :return:DataFrame с транзакциями за указанный месяц.
     """
-
-    df = pd.read_excel(path)
 
     sample = date[5:7] + "." + date[:4]
 

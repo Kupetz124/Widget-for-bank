@@ -1,5 +1,4 @@
 import os
-from typing import Any
 
 import requests
 from dotenv import load_dotenv
@@ -9,7 +8,7 @@ API_KEY_STOCKS = os.getenv("API_KEY_ALFA")
 API_KEY_CURRENCY = os.getenv("API_KEY_EXCHANGE")
 
 
-def parser_stocks(list_stocks: list[str]) -> dict:
+def parser_stocks(list_stocks: list) -> dict:
     """
     Получает данные акций по API.
     :param list_stocks:Список тикеров акций.
@@ -37,7 +36,7 @@ def parser_stocks(list_stocks: list[str]) -> dict:
     return new_dict
 
 
-def parser_currency(rate: list[Any]) -> dict:
+def parser_currency(rate: list) -> dict:
     """
     Получает данные по курсу валют из списка.
     :param rate: Список нужных валют.

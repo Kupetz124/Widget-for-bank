@@ -15,11 +15,15 @@ def log(file_name: Optional[str] = None) -> Any:
     def wrapper(func: Callable) -> Any:
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
+            # Получение пути к текущему исполняемому файлу
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            base_dir = current_dir[: -(len(current_dir.split("\\")[-1]) + 1)]
+
             # проверяем, указан ли файл для логов, если нет, записываем в файл по умолчанию.
             if file_name is None:
-                my_file = os.path.join("..", "data", "my_file.xlsx")
+                my_file = os.path.join(base_dir, "data", "my_reports.xlsx")
             else:
-                my_file = os.path.join("..", "data", f"{file_name}.xlsx")
+                my_file = os.path.join(base_dir, "data", f"{file_name}.xlsx")
 
             result = func(*args, **kwargs)
 
